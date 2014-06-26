@@ -1,0 +1,42 @@
+/**
+ * Default theme for reveal.js.
+ *
+ * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:300);
+
+$mainFont: 'Roboto', sans-serif, 300;
+$mainColor: rgb(255, 255, 255);
+
+$headingFont: $mainFont;
+$headingColor: rgb(0, 186, 242);
+$headingTextTransform: none;
+$headingTextShadow: none;
+
+$linkColor: $headingColor;
+
+// Background generator
+@mixin bodyBackground() {
+	@include vertical-gradient(rgba(50, 51, 50, 1), rgba(0, 0, 0, 1));
+}
+
+#logo {
+	background-image: url('http://www.coderus.com/wp-content/themes/coderus/img/coderus_logo.png');
+	background-repeat: no-repeat;
+	position: absolute;
+	right: 16px;
+	bottom: 16px;
+	width: 82px;
+	height: 104px;
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
