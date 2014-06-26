@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<base href="../../" target="_blank">
+    <meta charset="utf-8">
+
+    <title>Docker Presentation</title>
+
+    <meta name="author" content="Aquilino Viveiros">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        .normal {
+            background: transparent !important;
+            box-shadow: 0 0 0 0 !important;
+            border: 0 !important;
+        }
+
+        ul.remove-dots {
+            list-style-type: none;
+        }
+
+        ul.remove-dots li {
+            margin-top: 50px;
+        }
+
+        .bold {
+            font-weight: bold !important;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section>
+    <img class="normal" alt="Docker" src="presentations/docker/assets/docker-logo.png"
+         style="width: 70%; height: 70%">
+</section>
+
+<section>
+    <h2>What is Docker?</h2>
+
+    <p style="font-style: italic">“An open source project to build, ship and run any application as a lightweight
+        container.”</p>
+</section>
+
+<section>
+    <h2>Origins</h2>
+    <ul class="remove-dots">
+        <li>Initial release on March 2013.</li>
+        <li>Rewrite of code that currently runs on dotCloud PaaS.</li>
+        <li>Initially written in Python, rewritten in Go.</li>
+        <li>Huge community on GitHub (9000+ commits, 450+ contributors).</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Remember Vagrant?</h2>
+
+    <p>“Development environments made easy.”</p>
+    <br/>
+
+    <p class="fragment">Developers provision virtual machines.</p>
+    <br/>
+    <br/>
+    <br/>
+
+    <p class="fragment">Docker tries to go a step further using lightweight containers.</p>
+</section>
+
+<section>
+    <h2>Vagrant (VMs) vs Docker (Containers)</h2>
+    <br/><br/>
+
+    <div style="display: table; width: 100%">
+        <div style="display: table-row">
+            <div class="fragment" style="display: table-cell; width: 50%">
+                <h3>Vagrant</h3>
+                <img class="normal" alt="Docker" src="presentations/docker/assets/vagrant.png"
+                     style="width: 240px; height: 265px"/>
+            </div>
+            <div class="fragment" style="display: table-cell; width: 50%">
+                <h3>Docker</h3>
+                <img class="normal" alt="Docker" src="presentations/docker/assets/docker.png"
+                     style="width: 240px; height: 198px"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>How does Docker work?</h2>
+    <ul class="remove-dots">
+        <li class="fragment">Uses LinuX Containers (LXC) - Docker is abstraction layer.</li>
+        <li class="fragment" style="margin-top: 0 !important">Allows to run a Linux system within another Linux system.</li>
+        <li class="fragment" style="margin-top: 50px">
+            <p>Imagine VMs (Containers) within VMs.</p>
+            <img class="normal" style="width: 400px; height: 200px" src="presentations/docker/assets/inception-top.jpg"/>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Why containers?</h2>
+    <ul class="remove-dots">
+        <li><span style="font-weight: bold">Speed:</span> boots in seconds.</li>
+        <li><span style="font-weight: bold">Footprint:</span> 100+ containers in one machine. Small disk requirements.
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Docker terminology</h2>
+
+    <ul class="remove-dots">
+        <li><span class="bold">Image:</span> skeleton for a "VM".</li>
+        <li><span class="bold">Container:</span> a running instance of the image.</li>
+        <li><span class="bold">Registry:</span> repository for docker images (Public/Private Repos)<br/>
+            @ <a href="https://registry.hub.docker.com/">registry.hub.docker.com</a></li>
+    </ul>
+</section>
+
+<section>
+    <h2>Node app - Step 1</h2>
+
+    <p>app/app.js</p>
+	<pre><code data-trim style="font-size: 18px; margin-top: 20px;">
+var express = require('express');
+
+var app = express();
+app.get('/', function (req, res) {
+    res.send('Hello from Docker!');
+});
+
+app.listen(8080);
+    </code></pre>
+</section>
+<section>
+    <h2>Provisioning a image - Step 2</h2>
+
+    <p>Configuring Dockerfile</p>
+
+	<pre><code data-trim class="actionscript" style="width: 100%; font-size: 18px; margin-top: 20px;">
+FROM ubuntu:14.04
+
+# Install Node.js and npm
+RUN apt-get update; apt-get install -y nodejs; apt-get install -y npm
+RUN ln -sf /usr/bin/nodejs /usr/local/bin/node
+
+# Bundle app source
+ADD . /app
+
+# Install app dependencies
+RUN cd /app; npm install
+
+EXPOSE 8080
+CMD ["node", "/app/app.js"]
+    </code></pre>
+    <br/>
+
+    <p>Building a image</p>
+<pre><code data-trim class="actionscript" style="width: 100%; font-size: 18px; margin-top: 20px;">
+    $ sudo docker build -t app_image .
+</code></pre>
+</section>
+
+<section>
+    <h2>Running a container - Step 3</h2>
+    <br/>
+
+    <p>Running a container</p>
+<pre><code data-trim class="actionscript" style="width: 100%; font-size: 18px; margin-top: 20px;">
+    $ sudo docker run -d --name app_container -p 8080:8080 app_image
+</code></pre>
+    <br/>
+
+    <p>Listing running containers</p>
+    <pre><code data-trim class="actionscript" style="width: 100%; font-size: 18px; margin-top: 20px;">
+        $ sudo docker ps -a
+    </code></pre>
+    <img class="normal" alt="Docker" style="height: 60px" src="presentations/docker/assets/docker-running.png"/>
+</section>
+
+<section>
+    <h2>Sharing an image - Step 4</h2>
+    <br>
+
+    <p>Push to Docker Registry</p>
+    <pre><code data-trim class="actionscript" style="width: 100%; font-size: 18px; margin-top: 20px;">
+        $ sudo docker push app_image
+    </code></pre>
+
+    <p>Pull from Docker Registry</p>
+    <pre><code data-trim class="actionscript" style="width: 100%; font-size: 18px; margin-top: 20px;">
+        $ sudo docker pull app_image
+    </code></pre>
+</section>
+
+<section>
+    <h2>Use cases</h2>
+    <br/>
+
+    <div style="background: #ffffff; margin: 20px">
+        <img class="normal" style="margin-right: 20px" src="presentations/docker/assets/ebay-logo.png"/>
+        <img class="normal" style="margin-right: 20px" src="presentations/docker/assets/spotify-small.png"/>
+        <img class="normal" style="margin-right: 20px" src="presentations/docker/assets/yandex-small.png"/>
+        <img class="normal" style="margin-right: 20px" src="presentations/docker/assets/mailgun-logo.png"/>
+        <img class="normal" src="presentations/docker/assets/cambridge-healthcare-small.png"/>
+    </div>
+</section>
+
+<section>
+    <h2>Wrapping Up</h2>
+    <ul class="remove-dots">
+        <li>
+            <p class="bold">Vagrant</p>
+            <p>Tool for managing virtual machines.</p>
+            <p>More focused for Development.</p>
+        </li>
+        <li>
+            <p class="bold">Docker</p>
+            <p>Tool to build and deploy applications by packaging them into containers.</p>
+            <p>More focused for Production.</p>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Vagrant + Docker</h2>
+    <br />
+    <p>Vagrantfile</p>
+    <pre><code data-trim class="actionscript" style="width: 100%; font-size: 18px; margin-top: 20px;">
+Vagrant.configure("2") do |config|
+    config.vm.box = "ubuntu/trusty64"
+
+    config.vm.provision "docker" do |d|
+        d.build_image "/vagrant/app" -t "app/image"
+        d.run "app/image"
+    end
+end
+    </code></pre>
+</section>
+
+<section>
+    <h2>Questions?</h2>
+</section>
+
+</div>
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: 'plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
