@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+        <base href="../../" target="_blank">
+
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+<div class="reveal">
+    <div class="slides">
+		<section data-markdown>
+		    <script type="text/template">
+		        ## The Byzantine Generals Do Crypto
+		    </script>
+		</section>    
+		<section>
+		        <h3>The Byzantine Generals Problem</h3>
+				    <p><img src="presentations/crypto/graph_fail3.png" alt="Consensus" title="Consensus"></p>
+      			<p>Generals propose a time to attack.</p>
+      			<p>Generals must communicate by sending messengers.</p>
+      			<p>Generals can send many messengers.</p>
+      			<p>Generals must come to a <em>consensus</em> on the time to attack.</p>
+		</section>  
+		<section>
+		        <h3>The Method</h3>
+      			<p class="fragment">"I will attack on Day 4 at 0600, will you join me?"</p>
+      			<p class="fragment">Attach a sealed response to the original message.</p>
+      			<p class="fragment">Send out copies of the newly combined message to the other generals and ask them to do the same.</p>
+      			<p class="fragment">The objective is to have them all agreeing to the same time by adding all of their seals onto the same message chain.</p>
+		</section>  
+		<section>
+		        <h3>The Problem</h3>
+      			<p class="fragment">Many messengers in transit at any one time.</p>
+      			<p class="fragment">Each general could receive multiple messengers each with different attack times.</p>
+      			<p class="fragment">Some of the generals will agree to more than one attack time.</p>
+      			<p class="fragment">It quickly degenerates into a completely untrustworthy tangle of conflicting messages and attack times.</p>
+		</section>  
+    <section>
+            <h3>Truth</h3>
+            <p><img src="presentations/crypto/graph_fail3.png" alt="Consensus" title="Consensus"></p>
+            <p>How do you establish truth in a distributed network?</p>
+    </section>  
+    <section>
+            <h3>Bitcoin</h3>
+            <p class="fragment">Public ledger containing all transactions (blockchain).</p>
+            <p class="fragment">A transaction: send x amount from A->B.</p>
+            <p class="fragment">Transactions are processed by a peer-to-peer network.</p>
+    </section>  
+    <section>
+            <h3>The Problem with Transactions</h3>
+            <p class="fragment">Transactions can arrive at different times at different nodes.</p>
+            <p class="fragment">Timestamps can be faked.</p>
+            <p class="fragment">Bad actors can (attempt to) double spend.</p>
+            <p class="fragment">How do you agree on the order of the transactions?</p>
+    </section>  
+    <section>
+            <h3>Mining</h3>
+            <p class="fragment">Maintaining the blockchain is called mining.</p>
+            <p class="fragment">Miners gather a set of valid transactions into a block and add to the blockchain.</p>
+            <p class="fragment">Apply a cryptographic hash function that (eventually) results in a hash of a certain difficulty.</p>
+            <p class="fragment">Publish block hash to the network.</p>
+            <p class="fragment">This is known as "Proof-of-Work".</p>
+    </section>  
+    <section>
+      <h3>Cryptographic Hash</h3>
+      <p> </p>
+      <pre><code data-trim>
+sha256("But here's my number so call me maybe")
+c7331b414067c5101f66657909eb56eb5d50e4b5883c35ca5f08bfb2d3798fd6
+</code></pre>
+<p>Notice how the hash drastically changes due to a one character change:</p>
+<pre><code data-trim>
+sha256("But here's my number so call me maybe.")
+dc15744ef69e4a81e7dc0f04921b471101389609e729624438c3b15afb4d09a4
+      </code></pre>
+    </section>
+    <section>
+            <h3>Block hashing algorithm</h3>
+<pre><code data-trim>
+if sha256(sha256(prevHash + transactionsHash + random number)) < target
+</code></pre>
+      <p>Bitcoin has a target hash that looks something like this:</p>
+      <pre><code data-trim>00000000000000001e8d6829a8a21adc5d38d0a473b144b6765798e61f98bd1d</code></pre>
+      <p class="fragment">Only if this is true can a miner publish to the network.</p>
+      <p class="fragment">Guessing the right random number takes time.</p>
+      <p class="fragment">Miners receive one block soultion at a time (usually).</p>
+      <p class="fragment">Simple to validate and agree on the transaction order.</p>
+
+    </section>  
+    <section>
+            <h3>How "Proof-of-Work" Solved The Byzantine Generals Problem</h3>
+            <p class="fragment">Proof-of-Work adds a cost to the sending of a messenger.</p>
+            <p class="fragment">Slows down the sending of messengers.</p>
+            <p class="fragment">Essentially, only one <em>message</em> is being transmitted.</p>
+            <p class="fragment">Effort is put into propagating the TRUTH.</p>
+    </section>  
+    </div>
+</div>
+
+
+<div id="logo"></div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: false,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    //parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    //parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+
+</script>
+
+</body>
+</html>
