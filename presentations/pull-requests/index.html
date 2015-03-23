@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <base href="../../" target="_blank">
+  <meta charset="utf-8">
+
+  <title>Pull Requests</title>
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" href="css/theme/coderus.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = 'css/print/pdf.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+  </script>
+
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section>
+      <h2>Introduction To</h2>
+      <img src="presentations/pull-requests/assets/pull-request-icon.png" style="background: none; border: none; box-shadow: none;" />
+      <h2>The Pull Request Workflow</h2>
+    </section>
+    <section>
+    <h3>Traditionally</h3>
+    <cite>All developers add their changes straight into the main code</cite>
+    <div style="margin-top: 24px">
+      <ul>
+        <li class="fragment">Developer A is working on a new feature</li>
+        <li class="fragment">Developer B is working on a bug fix</li>
+      </ul>
+    </div>
+    </section>
+    <section>
+    <h3>What's the problem?</h3>
+    <pre><code data-trim>
+* 8d2165a - re-add the new feature after bug fix removed it &lt;Developer A&gt;
+* 56bd1f4 - fixed the bug in the firmware journey &lt;Developer B&gt;
+* d47efa3 - updated firmware to make use of the new feature &lt;Developer A&gt;
+* b3c3b9e - fixed a bug in the new feature &lt;Developer A&gt;
+* 19a99be - fixed the bug in the carousel &lt;Developer B&gt;
+* 34c0ce5 - started adding awesome feature &lt;Developer A&gt;
+    </code></pre>
+    </section>
+    <section>
+    <h3>What's the problem?</h3>
+    <ul>
+      <li class="fragment">Hard to see when a change was introduced</li>
+      <li class="fragment">Changes from different topics are intermingled</li>
+      <li class="fragment">Changes can only be retroactively reviewed</li>
+    </ul>
+    </section>
+    <section>
+    <h3>Enter Pull Requests!*</h3>
+    <p class="fragment"><em>*sort of</em></p>
+    </section>
+    <section>
+    <h3>What Is A Pull Request?</h3>
+    <cite class="fragment">Hey! I've made some changes! You want them?</cite>
+    </section>
+    <section>
+    <h3>How does it help?</h3>
+    <ul>
+      <li class="fragment">All changes for one topic are collected</li>
+      <li class="fragment">All changes are introduced to master in a single change</li>
+      <li class="fragment">Code entering master can  <em>controlled</em> and <em>reviewed</em></li>
+    </ul>
+    </section>
+    <section>
+    <h3>Much better</h3>
+    <pre><code data-trim>
+*   0e98532 - (HEAD, master) integrate fix-1 &lt;Eddie Woodley&gt;
+|\
+| * 4783108 - (fix-1) final tweaks to fix &lt;Developer B&gt;
+| * 83f418d - add fixes for bug to firmware journey &lt;Developer B&gt;
+| * b6020b7 - initial fixes for bug &lt;Developer B&gt;
+|/
+*   bb1fbb3 - integrate feat-1 &lt;Eddie Woodley&gt;
+|\
+| * 244bc00 - (feat-1) add tests for feature &lt;Developer A&gt;
+| * 25b45ca - added feature to firmware &lt;Developer A&gt;
+| * b0d78cd - started adding awesome feature &lt;Developer A&gt;
+|/
+* 949cd9d - initial commit &lt;Eddie Woodley&gt;
+    </code></pre>
+    </section>
+    <section>
+    <h3>Questions?</h3>
+    </section>
+  </div>
+
+</div>
+
+<div id="logo"></div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: false,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    //parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    //parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+
+</script>
+
+</body>
+</html>
