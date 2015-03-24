@@ -5,7 +5,7 @@
  */
 @import url(http://fonts.googleapis.com/css?family=Roboto:300);
 #logo {
-  background-image: url("http://www.coderus.com/wp-content/themes/coderus/img/coderus_logo.png");
+  background-image: url("../../logo.png");
   background-repeat: no-repeat;
   position: absolute;
   right: 16px;
