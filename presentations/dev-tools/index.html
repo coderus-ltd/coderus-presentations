@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+        <base href="../../" target="_blank">
+
+		<meta charset="utf-8">
+
+		<title>Dev Tools v1</title>
+
+		<meta name="author" content="Aquilino Viveiros">
+        <meta name="description" content="Description on Development Tools: ProGet & Watir">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/coderus.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+        <style type="text/css">
+            .text-small { font-size: 20px !important; }
+            .push-right { margin-left: 200px !important; }
+            .text-italic { font-style: italic !important; }
+        </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>Dev Tools</h2>
+					<p class="text-small push-right">Aquilino Viveiros</p>
+                    <br/>
+                    <ul>
+						<li class="fragment">ProGet</li>
+						<li class="fragment">Watir</li>
+					</ul>
+				</section>
+				<section>
+                    <h3>ProGet</h3>
+                    <br/>
+                    <ul>
+						<li class="fragment">Package Management Server</li>
+                        <li class="fragment">Inedo LLC (US Software Company)</li>
+                        <li class="fragment">Free Edition and Enterprise Edition</li>
+                        <li class="fragment">Supports: NuGet, Chocolatey, OnceGet, npm &amp; Bower</li>
+					</ul>
+				</section>
+                <section>
+                    <h3>ProGet in action</h3>
+                    <ul>
+                        <li class="fragment">Nuget Package Repository</li>
+						<li class="fragment">Projects: BT Util</li>
+                        <li class="fragment">... and upcoming projects</li>
+					</ul>
+				</section>
+                <section>
+                    <h3>ProGet in action</h3>
+                    <br/>
+                    <img class="fragment" src="presentations/dev-tools/assets/proget-app.png">
+				</section>
+                <section>
+                    <h3>ProGet in action</h3>
+                    <br/>
+                    <div>
+                    <img class="fragment" src="presentations/dev-tools/assets/proget-btutil-normal.png">
+                    <img class="fragment" src="presentations/dev-tools/assets/proget-ztool-normal.png">
+				</section>
+                <section>
+                    <h3>ProGet in action</h3>
+                    <br/>
+                    <img src="presentations/dev-tools/assets/proget-btutil-color.png">
+                    <img src="presentations/dev-tools/assets/proget-ztool-color.png">
+				</section>
+                <section>
+                    <h3>ProGet advantages</h3>
+                    <br/>
+                    <ul>
+                        <li class="fragment">Central Package Repository</li>
+                        <li class="fragment">Easy to use (vs NuGet)</li>
+					</ul>
+				</section>
+                <section>
+                    <h3>Watir</h3>
+                    <br/>
+                    <ul>
+                        <li class="fragment">Pronounced <span class="text-italic">Water</span></li>
+                        <li class="fragment">Stands for <span class="text-italic">Web Application Testing in Ruby</span></li>
+                        <li class="fragment">Bret Pettichord and Paul Rogers</li>
+                        <li class="fragment">Cross Platform &amp; Open Source</li>
+					</ul>
+				</section>
+                <section>
+                    <h3>Watir in action</h3>
+                    <br/>
+                    <ul>
+                        <li class="fragment">Web Testing</li>
+						<li class="fragment">Projects: Firmware Web Pages</li>
+					</ul>
+				</section>
+                <section>
+                    <h3>Watir in action</h3>
+                    <br/>
+                    <img src="presentations/dev-tools/assets/watir-selenium.png">
+					</ul>
+				</section>
+                <section>
+                    <h3>Watir advantages</h3>
+                    <br/>
+                    <ul>
+                        <li class="fragment">Easy to use (vs Selenium)</li>
+                        <li class="fragment">Multi Browser &amp; OS support</li>
+                        <li class="fragment">Simple API</li>
+                        <li class="fragment">Ruby!!</li>
+                        <img class="fragment" src="presentations/dev-tools/assets/watir-ruby.jpg">
+					</ul>
+				</section>
+                <section>
+                    <h2>Questions?</h2>
+				</section>
+                <section>
+                    <h2>Sources</h2>
+                    <br/>
+                    <ul>
+                        <li>http://www.inedo.com/proget/</li>
+                        <li>http://www.watir.com/</li>
+                        <li>http://www.watirwebdriver.com/</li>
+					</ul>
+				</section>
+			</div>
+		</div>
+
+        <div id="logo"></div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
