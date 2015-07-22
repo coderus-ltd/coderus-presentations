@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+        <base href="../../" target="_blank">
+
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="Xamarin">
+		<meta name="author" content="Byron Cooke">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Xamarin</h1>
+					<h3>Cross Platform Mobile Development</h3>
+					<p>
+						<small>Created by Byron Cooke</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>What is Xamarin?</h2>
+					<p>
+						Cross Platform Solution
+					</p>
+				</section>
+
+				<section>
+					<h2>Mobile Platform Support</h2>
+					<ul>
+						<li>Android</li>
+						<li>iOS</li>
+						<li>Windows Phone</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Approaches to Using Xamarin</h2>
+					<ul>
+						<li>Standard</li>
+						<li>Xamarin.Forms</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Standard Xamarin</h2>
+					<ul>
+						<li>Shared Logic</li>
+						<li>iOS UI</li>
+						<li>Android UI</li>
+						<li>Windows UI</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Xamarin.Forms</h2>
+					<ul>
+						<li>Shared Logic and UI</li>
+					</ul>
+				</section>
+
+				<section>					
+					<img width="666" height="413" src="presentations/xamarin/keypad.png" alt="keypad">
+				</section>
+
+				<section>
+					<h2>Sharing Code Options</h2>
+					<ul>
+						<li>Shared Asset Project - uses compiler directives to manage platform-specific requirements</li>
+						<li>Portable Class Library - Targets a specific set of platforms and uses interfaces to provide platform-specific functionality.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Code or XAML</h2>
+
+					<pre><code data-trim contenteditable>
+new Label {
+￼
+￼Text = "Hello from Code!",
+￼IsVisible = true,
+￼Opacity = 0.75,
+￼XAlign = TextAlignment.Center,
+￼VerticalOptions = LayoutOptions.CenterAndExpand,
+￼TextColor = Color.Blue,
+￼BackgroundColor = Color.FromRgb(255, 128, 128),
+￼FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+￼FontAttributes = FontAttributes.Bold | FontAttributes.Italic
+}
+￼
+					</code></pre>
+
+					<pre><code data-trim contenteditable>
+					￼&lt;Label 
+ Text="Hello from XAML!"
+￼IsVisible="True"
+￼Opacity="0.75"
+￼XAlign="Center"
+￼VerticalOptions="CenterAndExpand"
+￼TextColor="Blue"
+￼BackgroundColor="#FF8080"
+￼FontSize="Large"
+￼FontAttributes="Bold,Italic" /&gt;
+					</code></pre>
+
+				</section>
+
+				<section>
+					<h2>Questions?</h2>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
