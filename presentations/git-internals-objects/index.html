@@ -130,6 +130,7 @@
         
         <section>
           <h2>So, what happened?</h2>
+          <h3>Writing an object</h3>
           <ol>
             <li class="fragment">Build the object:
               <ol>
@@ -149,6 +150,22 @@
                 <li>Filename: the remaining 38 characters of the sha1</li>
               </ol>
             </li>
+        </section>
+        
+        <section>
+          <h2>So, what happened?</h2>
+          <h3>Reading an object</h3>
+          <ol>
+            <li class="fragment">Find the object on disk:
+              <ol>
+                <li>Directory: the first 2 characters of the sha1</li>
+                <li>Filename: the remaining 38 characters of the sha1</li>
+              </ol>
+            </li>
+            <li class="fragment">Extract the object using zlib</li>
+            <li class="fragment">Read the header</li>
+            <li class="fragment">Print out the content</li>
+          </ol>
         </section>
         
 			</div>
