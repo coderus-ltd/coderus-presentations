@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+        <base href="../../" target="_blank">
+
+		<meta charset="utf-8">
+
+		<title>Git Internals: Objects</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/coderus.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+      
+    <style>
+      .reveal section img { background:none; border:none; box-shadow:none; }
+    </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Git Internals</h1>
+					<h3>The Object Database</h3>
+          <img src="presentations/git-internals-objects/assets/git.png">
+          <p>By Eddie Woodley</p>
+				</section>
+        
+				<section data-transition="fade">
+					<h2>The What?</h2>
+          <p>Git at its heart is just a content-addressable file system</p>
+				</section>
+        
+				<section data-transition="fade">
+					<h2>Huh?</h2>
+          <p>Git at its heart is just a <em><b>way to store things</b></em></p>
+				</section>
+        
+				<section>
+          <h2>Some Background</h2>
+          <p>Git was not a VCS, it was an <em>engine</em> for a VCS</p>
+				</section>
+        
+        <!-- Cutting this section, just say it out loud
+				<section>
+          <h2>Plumbing and Porcelain</h2>
+				</section>
+        
+				<section>
+          <h2>Porcelain</h2>
+          <p>The bits you see every day</p>
+          <ul class="fragment">
+            <li>commit</li>
+            <li>checkout</li>
+            <li>tag</li>
+          </ul>
+				</section>
+        
+				<section>
+          <h2>Plumbing</h2>
+          <p>The little commands that make it work</p>
+          <ul class="fragment">
+            <li>cat-file</li>
+            <li>hash-object</li>
+            <li>update-index</li>
+          </ul>
+				</section>
+        
+				<section>
+          <h2>Plumbing</h2>
+          <p>The little commands that make it work</p>
+          <ul class="fragment">
+            <li>cat-file</li>
+            <li>hash-object</li>
+            <li>update-index</li>
+          </ul>
+				</section>
+        -->
+        <section>
+          <h2>Hands on</h2>
+        </section>
+        <section>
+          <h2>An Empty Database</h2>
+          <h3><pre>init</pre></h3>
+          <pre><code data-trim>
+            git init
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Let's store content</h2>
+          <h3><pre>hash-object</pre></h3>
+          <pre><code data-trim>
+            echo "Hello, git" | git hash-object -w --stdin
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>Let's read it!</h2>
+          <h3><pre>hash-object</pre></h3>
+          <pre><code data-trim>
+            git cat-file -p 22f46444d223ec55b7677c6dd212b155fe2a7661
+          </code></pre>
+        </section>
+        
+        <section>
+          <h2>So, what happened?</h2>
+          <ol>
+            <li class="fragment">Build the object:
+              <ol>
+                <li>Calculate a header: type + length + null</li>
+                <li>Prepend the header to the content: header + content</li>
+              </ol>
+            </li>
+            <li class="fragment">Determine the hash:
+              <ol>
+                <li>Apply SHA-1 to the object</li>
+              </ol>
+            </li>
+            <li class="fragment">Compress the object using zlib</li>
+            <li class="fragment">Store the object on disk:
+              <ol>
+                <li>Directory: the first 2 characters of the sha1</li>
+                <li>Filename: the remaining 38 characters of the sha1</li>
+              </ol>
+            </li>
+        </section>
+        
+			</div>
+
+		</div>
+
+        <div id="logo"></div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
