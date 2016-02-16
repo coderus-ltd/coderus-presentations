@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <base href="../../" target="_blank">
+
+  <meta charset="utf-8">
+
+  <title>Fastlane: Snapshot</title>
+
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" href="css/theme/coderus.css" id="theme">
+
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
+
+  <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+  <script>
+  if( window.location.search.match( /print-pdf/gi ) ) {
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'css/print/pdf.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  }
+  </script>
+
+  <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+      
+    <style>
+    .reveal section img { background:none; border:none; box-shadow:none; }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>Snapshot</h1>
+          <h3>Saving your time and sanity.</h3>
+          <img src="presentations/fastlane-snapshot/assets/fastlane.png">
+          <p>By Eddie Woodley</p>
+        </section>
+        
+        <section>
+          <h2>The Problem</h2>
+          <p>I finished my app and I want to publish it.</p>
+          <p class="fragment">I need to get some screenshots for the App Store.</p>
+        </section>
+        
+        <section>
+          <h2>Get some screenshots?</h2>
+          <h3 class="fragment">Sounds simple enough...</h3>
+          <ul>
+            <li class="fragment">2 Screenshots</li>
+            <li class="fragment">On 6 Screen Sizes (excluding Apple Watch): 12 Screenshots</li>
+            <li class="fragment">In 6 Languages: 72 Screenshots</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Oh.</h2>
+        </section>
+        
+        <section>
+          <h2>Enter Fastlane!</h2>
+          <ul>
+            <li class="fragment">Automates capturing screenshots</li>
+            <li class="fragment">Deals with diferent screen sizes and localizations</li>
+            <li class="fragment">Free and open as part of fastlane</li>
+          </ul>
+        </section>
+        
+        <section>
+          <h2>Demo Time</h2>
+        </section>
+        
+        <section>
+          <h2>Further Reading</h2>
+          <h3><a href="http://fastlane.tools">http://fastlane.tools</a></h3>
+        </section>
+    
+        <section>
+          <h2>Questions</h2>
+        </section>
+        
+      </div>
+  </div>
+
+  <div id="logo"></div>
+
+  <script src="lib/js/head.min.js"></script>
+  <script src="js/reveal.min.js"></script>
+
+  <script>
+
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: false,
+    progress: true,
+    history: true,
+    center: true,
+
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Parallax scrolling
+    // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+    // parallaxBackgroundSize: '2100px 900px',
+
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+
+  </script>
+
+</body>
+</html>
