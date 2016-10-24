@@ -6,10 +6,10 @@
 
 		<meta charset="utf-8">
 
-		<title>Slack</title>
+		<title>MvvmCross</title>
 
-		<meta name="author" content="Troy Rijkaard">
-        <meta name="description" content="Presentation on Slack">
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -36,109 +36,94 @@
 		<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
-        <style type="text/css">
-            .text-small { font-size: 20px !important; }
-            .push-right { margin-left: 200px !important; }
-            .text-italic { font-style: italic !important; }
-        </style>
 	</head>
 
 	<body>
 
 		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 			
 				<section>
-					<h1>
-					  <img src="http://www.greenmellenmedia.com/wp-content/uploads/slack-chat.png" height="120"/>
-					  Slack
-					</h1>
-					
-					<p class="fragment">Be less busy</p>
-					<aside class="notes">https://troystestslackroom.slack.com/messages/@slackbot/</aside>
-					<aside class="notes">https://bitbucket.org/Chesire/slackdemorepository</aside>
+					<h1>MvvmCross</h1>
+					<p>https://github.com/MvvmCross/MvvmCross</p>
 				</section>
 				
 				<section>
-					<h2>What is Slack?</h2>
-					<p class="fragment">Slack is a cloud-based team collaboration tool</p>
-					<p class="fragment">Its a team IM client</p>
+					<h3>What Is It?</h3>
+					<p>Cross platform MVVM framework</p>
+					<p>for Xamarin</p>
 				</section>
 				
 				<section>
 					<section>
-						<h3>So, Why Use Slack?</h3>
-						<p class="fragment">Email</p>
-						<p class="fragment">Skype</p>
-						<p class="fragment">Discord</p>
-						<p class="fragment">Hipchat</p>
+						<h3>What's Provided?</h3>
 					</section>
-					
 					<section>
-						<h3>1. Ease</h3>
-						<p>Everything in one place</p>
+						<h3>Supports wide range of platforms</h3>
+						<ul>
+							<li>Core libraries</li>
+							<li>Android</li>
+							<li>Android support libraries</li>
+							<li>iOS</li>
+							<li>iOS support libraries</li>
+							<li>Mac</li>
+							<li>Xamarin Forms</li>
+							<li>Windows Phone 8</li>
+							<li>WPF</li>
+							<li>UWP</li>
+						</ul>
 					</section>
-					
 					<section>
-						<h3>2. User base</h3>
-						<p>> 1 million daily users</p>
-					</section>	
-					
+						<h3>IoC Container</h3>
+						<ul>
+							<li>Implement dependency injection</li>
+							<li>Allows injection of platform specific code</li>
+						</ul>
+						<img src="presentations/mvvmcross/images/di.PNG"/>
+					</section>
 					<section>
-						<h3>3. Integrations</h3>
-						<p>So many integrations</p>
-					</section>			
+						<h3>Cross-Platform Databinding</h3>
+						<p>Android</p>
+						<img src="presentations/mvvmcross/images/androidbinding.PNG"/>
+						<p>UWP</p>
+						<img src="presentations/mvvmcross/images/uwpbinding.PNG"/>
+						<p>iOS</p>
+						<img src="presentations/mvvmcross/images/iosbinding.PNG"/>
+					</section>
 				</section>
 				
 				<section>
 					<section>
-						<h4>What do we do with Slack?</h4>
+						<h3>Advantages</h3>
+						<ul>
+							<li class="fragment">Less code between Views & ViewModels</li>
+							<li class="fragment">Bringing other platforms into line takes less time</li>
+							<li class="fragment">Has very powerful tools, such as converters</li>
+							<li class="fragment">Dependency injection framework allows powerful expressions</li>
+						</ul>
 					</section>
-					
 					<section>
-						<h4>Twitter</h4>
-						<img src="https://github.com/coderus-ltd/coderus-presentations/blob/gh-pages/presentations/slack/pics/twitter.PNG?raw=true"/>
+						<h3>Disadvantages</h3>
+						<ul>
+							<li class="fragment">Documentation!</li>
+							<li class="fragment">Learning curve</li>						
+							<li class="fragment">iOS</li>
+							<li class="fragment">MvvmCross ties the platform application to the framework</li>
+						</ul>
 					</section>
-					
-					<section>
-						<h4>JIRA</h4>
-						<img src="https://github.com/coderus-ltd/coderus-presentations/blob/gh-pages/presentations/slack/pics/jiraissue.PNG?raw=true"/>
-					</section>
-					
-					<section>
-						<h4>Jenkins</h4>
-						<img src="https://github.com/coderus-ltd/coderus-presentations/blob/gh-pages/presentations/slack/pics/jenkinsbuild.PNG?raw=true"/>
-					</section>					
 				</section>
 				
 				<section>
-					<section>
-						<h4>But, what could we do with Slack?</h4>
-					</section>
-					
-					<section>
-						<h4>Slackbot</h4>
-					</section>
-					
-					<section>
-						<h4>Bitbucket</h4>
-					</section>
-					
-					<section>
-						<h4>Wunderlist</h4>
-					</section>
-					
-					<section>
-						<h4>Others</h4>
-						<p>Kip, Trello, Sameroom, Polls, So many bots</p>
-					</section>
-					
+					<h3>Would I Use It Again?</h3>
 				</section>
 				
-				<section>
-					<h2>Questions?</h2>
-				</section>
+                <section>
+                    <h3>Questions</h3>
+                </section>
 			</div>
+
 		</div>
 
         <div id="logo"></div>
@@ -151,7 +136,7 @@
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-				controls: true,
+				controls: false,
 				progress: true,
 				history: true,
 				center: true,
