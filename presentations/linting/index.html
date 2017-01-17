@@ -86,14 +86,19 @@
 				<section>
                     <h3>SwiftLint - Custom Rules</h3>
                     <code><pre>
-member_prefix: # rule identifier
-    name: "Pirates Beat Ninjas" # rule name. optional
-    regex: "([n,N]inja)" # matching pattern
-    match_kinds: # SyntaxKinds to match. optional
+custom_rules:
+  pirates_beat_ninjas:
+    included: ".*.swift"
+    name: "Pirates Beat Ninjas"
+    regex: "([n,N]inja)"
+    match_kinds:
       - comment
       - identifier
-    message: "Pirates are better than ninjas." # violation message. optional
-    severity: error # violation severity. optional
+    message: "Pirates are better than ninjas."
+    severity: error
+  no_hiding_in_strings:
+    regex: "([n,N]inja)"
+    match_kinds: string
                     </pre></code>
 				</section>
 				<section>
